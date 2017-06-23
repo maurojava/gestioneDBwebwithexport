@@ -165,12 +165,13 @@
              <h3>Esporta solo i dati della pagina corrente</h3>
                 <h:commandLink>Excel  
                     <p:graphicImage library="images" name="icons/excel.jpg" />
-                    <p:dataExporter type="xls" target="panelcustomerdata:datalist" fileName="Customers" pageOnly="true" />
+                    <p:dataExporter type="xls"
+                                    target=":CustomerListForm:panelcustomerdata:datalist" fileName="Customers" pageOnly="true" />
                 </h:commandLink>
 
                 <h:commandLink>PDF  
                     <p:graphicImage library="images" name="icons/pdf.png" />  
-                    <p:dataExporter type="pdf" target="panelcustomerdata:datalist"
+                    <p:dataExporter type="pdf" target=":CustomerListForm:panelcustomerdata:datalist"
                                     fileName="Customers" pageOnly="true"/>  
                 </h:commandLink>  
             </p:panel>
