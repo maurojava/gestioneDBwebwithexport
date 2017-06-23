@@ -1,0 +1,45 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+
+    </h:head>
+
+    <h:body>
+        <h:form id="jsfexample">
+
+
+            <p:dataTable value="#{tableBean.cars}" id="mydata" var="item">
+                <f:facet name="caption">
+                    Data table example
+                </f:facet>
+                <p:column headerText="Name" style="width:125px">
+                    <h:inputText value="#{item.name}" />
+                </p:column>
+                <p:column headerText="Surname" style="width:125px">
+                    <h:inputText value="#{item.surname}" />
+                </p:column>
+                <p:column headerText="Age" style="width:125px">
+                    <h:inputText value="#{item.age}" />
+                </p:column>
+                <p:column headerText="City" style="width:125px">
+                    <h:inputText value="#{item.city}" />
+                </p:column>
+
+            </p:dataTable>
+            <p:panel header="Export All Data">
+                <h:commandLink>Excel  
+                    <p:graphicImage library="images" name="icons/excel.jpg" />
+                    <p:dataExporter type="xls" target="mydata" fileName="myexcel_cars" />
+                </h:commandLink>
+
+                <h:commandLink>PDF  
+                    <p:graphicImage library="images" name="icons/pdf.png" />  
+                    <p:dataExporter type="pdf" target="mydata" fileName="cars"/>  
+                </h:commandLink>  
+            </p:panel>
+        </h:form>
+    </h:body>
+</html>
