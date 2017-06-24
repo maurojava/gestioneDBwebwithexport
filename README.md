@@ -18,7 +18,7 @@ Important: for run the netbeans project, resolve the  dependencies:
 from project right click and select properties/lib.
 
 Into libs add the primefaces-6.1.jar and all-themes-1.0.10.jar (download from primefaces web site).
-Add also the the jtext-2.1.7.jar and poi-3.7.jar for exporting features.
+Add also the the jtext-2.1.7.jar and poi-3.7.jar and xmlbeans-2.3.0  for exporting features.
 
 
 For the persistence, control the  <jta-data-sorce> name if your db is configurated  into wildfly
