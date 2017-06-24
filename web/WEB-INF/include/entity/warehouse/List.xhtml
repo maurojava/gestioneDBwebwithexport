@@ -27,7 +27,9 @@
                          rowsPerPageTemplate="10,20,30,40,50"
                          selectionMode="single"
                          selection="#{warehouseController.selected}"
-                         filteredValue="#{warehouseController.filteredItems}">
+                         filteredValue="#{warehouseController.filteredItems}"
+                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {Exporters}" 
+                         style="margin-bottom:20px">
                 <!--
                          To enable Lazy Loading, please copy/replace the following lines above,
                          and be sure to replace the word HASH with the # symbol:
@@ -43,6 +45,32 @@
                 <p:ajax event="contextMenu" update="@form:createButton @form:viewButton @form:editButton @form:deleteButton"/>
                 <p:ajax event="rowDblselect" onsuccess="document.getElementById('WarehouseListForm:viewButton').click();"/>
 
+                
+                <f:facet name="{Exporters}">
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="icons/excel.png" width="24"/>
+                        <p:dataExporter type="xls" 
+                                        target="datalist"
+                                        fileName="#{myBundle.ListWarehouseTitle}"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="icons/pdf.png" width="24"/>
+                        <p:dataExporter type="pdf" target="datalist" fileName="#{myBundle.ListWarehouseTitle}"/>
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="icons/csv.png" width="24"/>
+                        <p:dataExporter type="csv" target="datalist" fileName="#{myBundle.ListWarehouseTitle}" />
+                    </h:commandLink>
+
+                    <h:commandLink>
+                        <p:graphicImage library="images" name="icons/xml.png" width="24"/>
+                        <p:dataExporter type="xml" target="datalist" fileName="#{myBundle.ListWarehouseTitle}" />
+                    </h:commandLink>
+                </f:facet>
+
+                
                 <p:column sortBy="#{item.warehouseId}" filterBy="#{item.warehouseId}">
                     <f:facet name="header">
                         <h:outputText value="#{myBundle.ListWarehouseTitle_warehouseId}"/>
@@ -68,6 +96,20 @@
                 <p:confirm header="#{myBundle.ConfirmationHeader}" message="#{myBundle.ConfirmDeleteMessage}" icon="ui-icon-alert"/>
             </p:commandButton>
 
+        </p:panel>
+         <p:panel id="panelesportazione" header="Export Page Data Only">
+            <h3>Esporta solo i dati della pagina corrente</h3>
+            <h:commandLink>Excel  
+                <p:graphicImage library="images" name="icons/excel.jpg" />
+                <p:dataExporter type="xls"
+                                target=":WarehouseListForm:datalist" fileName="#{myBundle.ListWarehouseTitle}" pageOnly="true" />
+            </h:commandLink>
+
+            <h:commandLink>PDF  
+                <p:graphicImage library="images" name="icons/pdf.png" />  
+                <p:dataExporter type="pdf" target=":WarehouseListForm:datalist"
+                                fileName="#{myBundle.ListWarehouseTitle}" pageOnly="true"/>  
+            </h:commandLink>  
         </p:panel>
         <ui:include src="/WEB-INF/include/confirmation.xhtml"/>
     </h:form>
